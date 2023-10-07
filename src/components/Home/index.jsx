@@ -13,7 +13,7 @@ function index() {
             <Sidebar />
             <div className='w-full'>
                 {field === "1" && <Home />}
-                {field === "3" && <OrderHistory/>}
+                {field === "3" && <OrderHistory field={"Order History"}/>}
                 {field === "2" && <Profile/>}
                 {field === "4" && <CurrentJob/>}
 

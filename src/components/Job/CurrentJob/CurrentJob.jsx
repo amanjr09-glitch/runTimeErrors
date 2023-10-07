@@ -3,7 +3,7 @@ import History from '../../User/Order/History'
 function CurrentJob() {
     return (
         <div>
-            <History/>
+            <History field={"Current Job"}/>
         </div>
     )
 }
