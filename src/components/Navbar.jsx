@@ -277,7 +277,7 @@ function Navbar() {
             </ul>
           )}
         </div>
-        <button className='text-xs bg-inherit border-2 border-theme rounded-none text-theme font-semibold uppercase hover:bg-theme hover:text-gray-100'>
+        <button className='text-xs bg-inherit border-2 border-theme rounded-none text-theme p-2  py-1 font-semibold uppercase hover:bg-theme hover:text-gray-100'>
           Save
         </button>
       </div>
@@ -285,7 +285,7 @@ function Navbar() {
         <div className='text-2xl p-4 uppercase font-bold'>Latest Jobs</div>
         <button
           onClick={openModal}
-          className='text-xs bg-inherit border-2  mt-5 absolute right-5  border-pallete-darkgreen rounded-none text-pallete-darkgreen font-semibold uppercase hover:bg-pallete-darkgreen hover:text-gray-100'>
+          className='text-xs bg-inherit border-2  mt-5 absolute right-5 p-4 py-2 border-pallete-darkgreen rounded-none text-pallete-darkgreen font-semibold uppercase hover:bg-pallete-darkgreen hover:text-gray-100'>
           Create a job
         </button>
       </div>

@@ -32,7 +32,7 @@ function Jobcard() {
                         <div className='text-xl text-red-800 font-bold absolute left-10'>₹{1000}</div>
                         <button className='bg-theme text-white rounded-none mt-2 p-2 font-semibold uppercase'>Accept </button>
                     </div>
-                </div>  
+                </div>
             </Modal>
             <div className='p-4'>
                 <div className='w-[20rem] bg-gray-200 p-4'>
@@ -42,13 +42,13 @@ function Jobcard() {
                         <span className='text-gray-400'>Suraj Kumar</span>
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        <div className='text-xl text-red-800 font-bold mr-12'>₹{1000}</div>
                     </div>
-                    <div className='flex flex-row gap-2 justify-end'>
-                        <div className='text-xl text-red-800 font-bold mr-14'>₹{1000}</div>
+                    <div className='flex flex-row gap-2 justify-end align items-center'>
                         <button
                             onClick={openModal}
-                            className='bg-theme text-white uppercase font-semibold rounded-none text-xs'>Details</button>
-                        <button className='bg-theme text-white uppercase font-semibold rounded-none text-xs'>Query</button>
+                            className='bg-theme text-white uppercase p-2 font-semibold rounded-none text-xs'>Details</button>
+                        <button className='bg-theme text-white uppercase p-2  font-semibold rounded-none text-xs'>Query</button>
                     </div>
                 </div>
 
@@ -58,4 +58,4 @@ function Jobcard() {
     )
 }
 
-export default Jobcard
+export default Jobcard  
