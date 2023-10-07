@@ -51,14 +51,14 @@ export default () => {
         <Sidenav.Header>
           <div style={headerStyles}>
             {expand && (
-              <div className="mb-6">
+              <div className="mb-3">
                 <img
-                  className="w-fit h-[6rem] object-cover"
+                  className="w-1/3 h-[6rem] object-cover"
                   src="/djlogo.png"
                 />
                 <button
                   className="flex mb-2 rounded-none bg-gray-500 text-xs font-bold w-fit text-theme py-1 px-2 items-center gap-1"
-                >
+                  >
                   <span className="uppercase">
                     Vaibhav Pal
                   </span>

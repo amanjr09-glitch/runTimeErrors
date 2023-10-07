@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Modal from '../../UI/Modal'
+import { readData } from '../../api/fb';
 
 function Jobcard() {
     const [modal, setModal] = useState(false);
-
+    const [jobsData, setJobsData]=useState(null);
     const openModal = () => {
         setModal(true);
     }
@@ -11,6 +12,21 @@ function Jobcard() {
     const closeModal = () => {
         setModal(false)
     }
+
+    useEffect(()=>{
+      const fetchData = async () => {
+        try {
+          const jobsData = await readData('jobs');
+          setJobsData(jobsData);
+        } catch (error) {
+          console.error('Error reading job data:', error);
+        }
+      };
+  
+      fetchData();
+    },[])
+
+    console.log(jobsData);
     return (
         <>
             <Modal open={modal} closeModal={closeModal}>
@@ -34,8 +50,9 @@ function Jobcard() {
                     </div>
                 </div>
             </Modal>
-            <div className='p-4'>
-                <div className='w-[20rem] bg-gray-200 p-4'>
+            <div className='p-4 grid grid-cols-1 md:grid-2 lg:grid-cols-3 gap-4 overflow-y-auto max-h-screen '>
+            {jobsData && Object.keys(jobsData).map((jobId) => (
+                <div key={jobId} className='w-[25rem] bg-gray-200 p-4'>
                     <img className="" src="https://assets-prd.ignimgs.com/2022/08/17/top25animecharacters-slideshow-1660779038818.jpg?crop=16%3A9&width=888&dpr=2" alt="" />
                     <hr />
                     <div class="py-1">
@@ -51,7 +68,7 @@ function Jobcard() {
                         <button className='bg-theme text-white uppercase p-2  font-semibold rounded-none text-xs'>Query</button>
                     </div>
                 </div>
-
+   ))}
             </div>
         </>
 

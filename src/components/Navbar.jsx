@@ -6,12 +6,17 @@ import Modal from "../UI/Modal"
 import { Checkbox } from 'rsuite';
 // import { Textarea } from '@material-tailwind/react';
 import TextArea from '../UI/TextArea';
+import {createDB, readData, syncUpload, update, writeData}  from "../api/fb"
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 function Navbar() {
   const [suggestions, setSuggestions] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [modal, setModal] = useState(false);
   const [isDelivery, setIsDelivery] = useState(false);
+  const [fileData, setFileData] = useState(null);
   const [formData, setFormData] = useState({
     jobTitle: '',
     jobType: '',
@@ -19,18 +24,69 @@ function Navbar() {
     isDelivery: false,
     email: '',
     phoneNumber: '',
+    weight: '',
+    length: '',
+    breadth: '',
+    height: '',
   });
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+ 
+  const handleFileChange = (file) => {
+    // Handle the file change and update the fileData state
+    // Assuming fileData is a URL or relevant file data
+    setFileData(file);
+  };
+
+  const handleChange = (fieldName, value) => {
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
+      [fieldName]: value,
     }));
   };
-  const handleSubmit = (e) => {
+  const handleJobTypeSelect = (value) => {
+    // Update the jobType in formData when selected from the dropdown
+    handleChange('jobType', value);
+  };
+  // console.log(jobId);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form data submitted:', formData);
+  
+    const jobId = uuidv4(); // Generate a new UUID for the job
+    const {
+      jobTitle,
+      jobType,
+      address,
+      email,
+      phoneNumber,
+      weight,
+      length,
+      breadth,
+      height,
+    } = formData;
+  
+    const jobData = {
+      id: jobId,  // Use the newly generated UUID as the job ID
+      jobTitle,
+      jobType,
+      address,
+      email,
+      phoneNumber,
+      weight,
+      length,
+      breadth,
+      height,
+      fileData: fileData || null,
+    };
+    const jobsid = uuidv4();
+    try {
+      const downloadURL = await syncUpload(fileData, `jobs/${jobsid}/${jobId}`);
+      jobData.fileURL = downloadURL; 
+      await writeData(`jobs/${jobsid}`, jobData);
+      console.log('Form data submitted:', jobData);
+      alert('Form data submitted successfully!');
+    } catch (error) {
+      console.error('Error writing form data:', error);
+      alert('An error occurred while writing form data.');
+    }
   };
 
   const handleCheckboxChange = () => {
@@ -55,6 +111,8 @@ function Navbar() {
   };
 
 
+ 
+  // console.log(res);
   const openModal = () => {
     setModal(true);
   };
@@ -65,15 +123,15 @@ function Navbar() {
 
 
   const jobType = [
-    { name: "Delivery" },
+    { name: "Pet Care" },
     { name: "Ride" },
     { name: "Gardening" },
     { name: "Coaching" },
     { name: "Households" },
     { name: "Fieldwork" },
-    { name: "Pet Care" },
     { name: "Baby Sitter" },
     { name: "Driver" },
+    { name: "Delivery" },
   ]
 
   const range = [
@@ -104,8 +162,8 @@ function Navbar() {
               <InputHolder
                 type="text"
                 title={"Job Title"}
-                value={formData.jobTitle}
-                onChange={handleChange}
+                defaultValue={formData.jobTitle}
+                onChange={(e) => handleChange('jobTitle', e.target.value)}
                 placeholder="Enter job title"
                 required
               />
@@ -120,16 +178,12 @@ function Navbar() {
                 required */}
               {/* /> */}
             </div>
-
-
             <div className="mb-4">
-              <InputHolder
-                type="text"
-                title={"Job Type"}
-                value={formData.jobType}
-                onChange={handleChange}
-                placeholder="Enter job Type"
-                required
+              <DropDown
+                title="Job Type"
+                data={jobType}
+                defaultValue=""
+                onChange={handleJobTypeSelect}
               />
             </div>
 
@@ -137,8 +191,8 @@ function Navbar() {
               <InputHolder
                 type="text"
                 title={"Address"}
-                value={formData.address}
-                onChange={handleChange}
+                defaultValue={formData.address}
+                onChange={(e) => handleChange('address', e.target.value)}
                 placeholder="Enter Address"
                 required
               />
@@ -147,8 +201,8 @@ function Navbar() {
               <InputHolder
                 type={"file"}
                 title={"Upload Picture"}
-                value={formData.address}
-                onChange={handleChange}
+                defaultValue=""
+                onChange={(e) => handleFileChange(e.target.value)}
                 required
               />
             </div>
@@ -169,8 +223,8 @@ function Navbar() {
                   <InputHolder
                     type="Email"
                     title={"Email"}
-                    value={formData.email}
-                    onChange={handleChange}
+                    defaultValue={formData.email}
+                    onChange={(e) => handleChange('email', e.target.value)}
                     placeholder="Enter Email"
                     required
                   />
@@ -180,8 +234,8 @@ function Navbar() {
                   <InputHolder
                     type="text"
                     title={"Phone Number"}
-                    value={formData.address}
-                    onChange={handleChange}
+                    defaultValue={formData.phoneNumber}
+                    onChange={(e) => handleChange('phoneNumber', e.target.value)}
                     placeholder="Enter Number"
                     required
                   />
@@ -190,8 +244,8 @@ function Navbar() {
                   <InputHolder
                     type="text"
                     title={"Weight"}
-                    value={formData.address}
-                    onChange={handleChange}
+                    defaultValue={formData.weight}
+                    onChange={(e) => handleChange('weight', e.target.value)}
                     placeholder="Enter Weight"
                     required
                   />
@@ -200,8 +254,8 @@ function Navbar() {
                   <InputHolder
                     type="text"
                     title={"Height"}
-                    value={formData.address}
-                    onChange={handleChange}
+                    defaultValue={formData.height}
+                    onChange={(e) => handleChange('height', e.target.value)}
                     placeholder="Enter Height"
                     required
                   />
@@ -210,8 +264,8 @@ function Navbar() {
                   <InputHolder
                     type="text"
                     title={"Length"}
-                    value={formData.address}
-                    onChange={handleChange}
+                    defaultValue={formData.length}
+                    onChange={(e) => handleChange('length', e.target.value)}
                     placeholder="Enter Length"
                     required
                   />
@@ -220,8 +274,8 @@ function Navbar() {
                   <InputHolder
                     type="text"
                     title={"Breadth"}
-                    value={formData.address}
-                    onChange={handleChange}
+                    defaultValue={formData.breadth}
+                    onChange={(e) => handleChange('breadth', e.target.value)}
                     placeholder="Enter Breadth "
                     required
                   />
@@ -292,5 +346,4 @@ function Navbar() {
     </>
   )
 }
-
 export default Navbar   

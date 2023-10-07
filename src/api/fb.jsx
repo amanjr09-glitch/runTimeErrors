@@ -1,4 +1,4 @@
-import app from "../firebase";
+import app from "../firebase"
 import {
   getFirestore,
   collection,
@@ -40,20 +40,20 @@ export function deleteData(path){
 export function writeData(path, data) {
   // console.log(path, data);
   return set(rref(rdb, path), data);
-}
-export function readData(path) {
-  return get(child(rref(rdb), path))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        return snapshot.val();
-      } else {
-        console.log("No data available");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
+  }
+  export function readData(path) {
+    return get(child(rref(rdb), path))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          return snapshot.val();
+        } else {
+          console.log("No data available");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
 const filter = (q) => {
   return new Promise((resolve, reject) => {
