@@ -1,5 +1,6 @@
 import react from 'react'
-import img from './Profile.jpeg'
+import img from '../../User/Profile.jpeg';
+import {FaLocationDot} from 'react-icons/fa6';
 
 function HistoryCard2(){
     return(
@@ -13,10 +14,10 @@ function HistoryCard2(){
                 <div className=' font-semibold'>CaraB</div>
                 <div className=' font-semibold'>Landing Pages | Unbounce | Wordpress</div>
                 <div className=' flex justify-between'>
-                    <div><span className='font-semibold'>$125.00</span>/hr</div>
+                    {/* <div><span className='font-semibold'>$125.00</span>/hr</div> */}
                     <div><span className='font-semibold'>$200k+</span>&nbsp; eranred</div>
                     <div>87% job success</div>
-                    <div>Address</div>
+                    <div className='flex items-center'><FaLocationDot/> <span> &nbsp;Mumbai</span></div>
                 </div>
                 <div className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum esse itaque eligendi in, asperiores aspernatur explicabo excepturi iure pariatur accusantium?</div>
                 <div className='text-sm'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti, cum!</div>

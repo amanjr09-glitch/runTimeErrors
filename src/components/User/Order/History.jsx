@@ -1,5 +1,5 @@
 import react from 'react'
-import HistoryCard from './HistoryCard1'
+// import HistoryCard from './HistoryCard1'
 import HistoryCard2 from './HistoryCard2'
 
 function History(){

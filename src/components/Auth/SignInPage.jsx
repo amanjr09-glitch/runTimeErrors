@@ -1,5 +1,5 @@
 import React from 'react'
-import InputHolder from '.././UI/Input.jsx'
+import InputHolder from '../../UI/Input.jsx'
 import { AiFillGoogleCircle } from "react-icons/ai";
 
 function SignIn(){
