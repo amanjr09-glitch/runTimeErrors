@@ -1,8 +1,12 @@
 import React from 'react'
+import Dashboard from "../components/Home"
+
 
 function Home() {
   return (
-    <div className='text-xl text-black'>Home</div>
+   <div>
+     <Dashboard/>
+   </div>
   )
 }
 

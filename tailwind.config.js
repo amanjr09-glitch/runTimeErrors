@@ -25,18 +25,14 @@ module.exports = {
           800: "#020202",
         },
         pallete:{
-          green:"#47DC80",
-          purple:"#5858DA",
+          red:"#ef4444",
           darkgreen:"#034737",
           blue:"#84E6FF",
-          white: "#F5F5F5",
-          black: "#000",
-
+          darkblue:"#007fff",
         },
-        theme: "#47DC80",
-        
+        theme: "#cb722c",
     }
     },
   },
   plugins: [],
-}
+} 

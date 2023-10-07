@@ -1,0 +1,16 @@
+.dropdown-group {
+    display: inline-block;
+  }
+  
+  .rs-dropdown,
+  .rs-dropdown-toggle,
+  .rs-dropdown-menu,
+  .rs-input {
+    width: 100% !important;
+    text-align: left !important;
+    background-color: inherit !important;
+    border:none !important;
+  }
+  /* .rs-dropdown-toggle, .rs-dropdown-toggle, .rs-btn{
+    color: black !important;
+  } */

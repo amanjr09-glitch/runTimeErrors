@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import Home from './screens/Home'
+import Screen from './screens'
+
 
 
 function App() {
-
   return (
     <>
-    <Home/>
+
+    <Screen/>
+
     </>
   )
 }

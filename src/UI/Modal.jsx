@@ -1,6 +1,5 @@
 import React from "react";
 import Modal from "react-modal";
-import { useAuth } from "../../context/auth";
 import { AnimatePresence, motion } from "framer-motion";
 
 Modal.setAppElement("#root");
@@ -27,7 +26,7 @@ function CustomModal({ open = false, closeModal = () => {}, children }) {
       isOpen={open}
       style={customStyles}
       onRequestClose={closeModal}
-      contentLabel="Sheetsway Active Modal"
+      contentLabel="runTimeErrors"
     >
       <AnimatePresence>
         {open && (
