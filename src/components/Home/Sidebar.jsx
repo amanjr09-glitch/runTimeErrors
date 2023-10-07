@@ -84,23 +84,23 @@ export default () => {
                 Home
               </Nav.Item>
               <Nav.Item
-                // as={Link}
-                // to={`/${name}/${id}/2`}
-                // active={field === "2"}
-                // eventKey="2"
+                as={Link}
+                to={`/2`}
+                active={field === "2"}
+                eventKey="2"
                 icon={<CharacterAuthorizeIcon />}
               >
-                Services
+                Profile
               </Nav.Item>
-              {/* <Nav.Item
-                // as={Link}
-                // to={`/${name}/${id}/3`}
-                // active={field === "3"}
-                // eventKey="3"
+              <Nav.Item
+                as={Link}
+                to={`/3`}
+                active={field === "3"}
+                eventKey="3"
                 icon={<RemindFillIcon />}
               >
-                Service
-              </Nav.Item> */}
+                Orders
+              </Nav.Item>
               {/* <Nav.Item
                 // as={Link}
                 // to={`/${name}/${id}/4`}
