@@ -8,6 +8,18 @@ import { Checkbox } from 'rsuite';
 import TextArea from '../UI/TextArea';
 
 function Navbar() {
+
+  // userFormData
+  const [jobTitle, setJobtitle] = useState("");
+  const [jobTypee, setJobTypee] = useState("");
+  const [jobAddress, setJobAddress] = useState("");
+  const [ThirdPersonEmail, setThirdPersonEmail] = useState("");
+  const [ThirdPersonPhoneNo, setThirdPersonPhoneNo] = useState("");
+  const [itemWeigth, setItemWeigth] = useState("");
+  const [itemHeigth, setItemheigth] = useState("");
+  const [itemLength, setItemLength] = useState("");
+  const [itemHBreadth, setItemhBreadth] = useState("");
+
   const [suggestions, setSuggestions] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [modal, setModal] = useState(false);
@@ -22,9 +34,52 @@ function Navbar() {
   });
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
+    if (type === 'checkbox') {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: type === 'checkbox' ? checked : value,
+      }));
+    } else {
+      switch (name) {
+        case 'jobTitle':
+          setJobtitle(value);
+          break;
+        case 'jobTypee':
+          setJobTypee(value);
+          break;
+        case 'jobAddress':
+          setJobAddress(value);
+          break;
+        case 'ThirdPersonEmail':
+          setThirdPersonEmail(value);
+          break;
+        case 'ThirdPersonPhoneNo':
+          setThirdPersonPhoneNo(value);
+          break;
+        case 'itemWeigth':
+          setItemWeigth(value);
+          break;
+        case 'itemHeigth':
+          setItemheigth(value);
+          break;
+        case 'itemLength':
+          setItemLength(value);
+          break;
+        case 'itemHBreadth':
+          setItemhBreadth(value);
+          break;
+        default:
+          break;
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === 'checkbox' ? checked : value,
+      [jobTitle]: type === 'checkbox' ? checked : value,
+      [jobTypee]: type === 'checkbox' ? checked : value,
+      [jobAddress]: type === 'checkbox' ? checked : value,
+      [jobAddress]: type === 'checkbox' ? checked : value,
     }));
   };
   const handleSubmit = (e) => {
@@ -108,6 +163,7 @@ function Navbar() {
                 onChange={handleChange}
                 placeholder="Enter job title"
                 required
+                
               />
             </div>
             <div className="mb-4">
