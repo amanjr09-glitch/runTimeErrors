@@ -6,7 +6,7 @@ import Modal from "../UI/Modal"
 import { Checkbox } from 'rsuite';
 // import { Textarea } from '@material-tailwind/react';
 import TextArea from '../UI/TextArea';
-import {createDB, readData, syncUpload, update, writeData}  from "../api/fb"
+import { createDB, readData, syncUpload, update, writeData } from "../api/fb"
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -29,7 +29,7 @@ function Navbar() {
     breadth: '',
     height: '',
   });
- 
+
   const handleFileChange = (file) => {
     // Handle the file change and update the fileData state
     // Assuming fileData is a URL or relevant file data
@@ -49,11 +49,12 @@ function Navbar() {
   // console.log(jobId);
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const jobId = uuidv4(); // Generate a new UUID for the job
     const {
       jobTitle,
       jobType,
+      jobDescription,
       address,
       email,
       phoneNumber,
@@ -61,12 +62,14 @@ function Navbar() {
       length,
       breadth,
       height,
+      bounty,
     } = formData;
-  
+
     const jobData = {
       id: jobId,  // Use the newly generated UUID as the job ID
       jobTitle,
       jobType,
+      jobDescription,
       address,
       email,
       phoneNumber,
@@ -74,12 +77,13 @@ function Navbar() {
       length,
       breadth,
       height,
+      bounty,
       fileData: fileData || null,
     };
     const jobsid = uuidv4();
     try {
       const downloadURL = await syncUpload(fileData, `jobs/${jobsid}/${jobId}`);
-      jobData.fileURL = downloadURL; 
+      jobData.fileURL = downloadURL;
       await writeData(`jobs/${jobsid}`, jobData);
       console.log('Form data submitted:', jobData);
       alert('Form data submitted successfully!');
@@ -111,7 +115,7 @@ function Navbar() {
   };
 
 
- 
+
   // console.log(res);
   const openModal = () => {
     setModal(true);
@@ -169,14 +173,14 @@ function Navbar() {
               />
             </div>
             <div className="mb-4">
-              {/* <Textarea
+              <TextArea
                 type="text"
                 title={"Job Title"}
-                value={formData.jobTitle}
+                value={formData.jobDescription}
                 onChange={handleChange}
                 placeholder="Enter job title"
-                required */}
-              {/* /> */}
+                required
+              />
             </div>
             <div className="mb-4">
               <DropDown
@@ -207,6 +211,15 @@ function Navbar() {
               />
             </div>
             <div className="mb-4">
+              <InputHolder
+                type={"number"}
+                title="Price"
+                defaultValue=""
+                onChange={(e) => handleFileChange('jobDescription', e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-4">
               <div className='flex flex-row align items-center'>
                 <Checkbox
                   checked={isDelivery}
@@ -218,7 +231,6 @@ function Navbar() {
 
             {isDelivery && (
               <>
-
                 <div className="mb-4">
                   <InputHolder
                     type="Email"
@@ -229,7 +241,6 @@ function Navbar() {
                     required
                   />
                 </div>
-
                 <div className="mb-4">
                   <InputHolder
                     type="text"
