@@ -12,7 +12,7 @@ function SignIn(){
                     <InputHolder title={"Password"}/>
                 </div>
                 <div className=' w-full flex justify-end'>
-                    <div className='border-theme text-gray-100 rounded-md bg-theme text-xs uppercase px-4 py-2'>Sign In</div>
+                    <button className='border-theme text-gray-100 rounded-md bg-theme text-xs uppercase px-4 py-2 font-bold'>Sign In</button>
                 </div>
                 <hr />
                 {/* <div>
