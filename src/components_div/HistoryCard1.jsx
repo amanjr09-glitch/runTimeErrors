@@ -1,5 +1,5 @@
 import react from 'react'
-import img from "C:/Users/divan/Downloads/Profile.jpeg";
+import img from './Profile.jpeg'
 
 function HistoryCard(){
     return(

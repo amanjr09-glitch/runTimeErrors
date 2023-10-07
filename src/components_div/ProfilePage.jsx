@@ -1,6 +1,6 @@
 import { react, useState } from 'react'
 import InputHolder from '.././UI/Input.jsx'
-import img from "C:/Users/divan/Downloads/Profile.jpeg";
+import img from './Profile.jpeg'
 import { HiEllipsisVertical } from "react-icons/hi2";
 // import DropDown from '../UI/DropDown.jsx';
 

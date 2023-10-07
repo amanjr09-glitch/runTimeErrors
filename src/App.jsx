@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Home from './screens/Home'
-import SignIn from './screens/SignInPage'
-import ProfilePage from './screens/ProfilePage'
-import Address from './screens/Address'
-import History from './screens/History'
+import Home from './components_div/Home'
+import SignIn from './components_div/SignInPage'
+import ProfilePage from './components_div/ProfilePage'
+import Address from './components_div/Address'
+import History from './components_div/History'
 
 function App() {
 
