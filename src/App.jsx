@@ -1,15 +1,13 @@
 import { useState } from 'react'
 import Screen from './screens'
-import OrderHistory from './Components/profile/OrderHistory'
+import SignIn from './components/Auth/SignInPage'
 
 
 function App() {
   return (
     <>
-
-    {/* <OrderHistory/> */}
     <Screen/>
-
+    {/* <SignIn/> */}
     </>
   )
 }
