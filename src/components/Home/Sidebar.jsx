@@ -58,7 +58,7 @@ export default () => {
                 />
                 <button
                   className="flex mb-2 rounded-none bg-gray-500 text-xs font-bold w-fit text-theme py-1 px-2 items-center gap-1"
-                  >
+                >
                   <span className="uppercase">
                     Vaibhav Pal
                   </span>
@@ -101,15 +101,15 @@ export default () => {
               >
                 Orders
               </Nav.Item>
-              {/* <Nav.Item
-                // as={Link}
-                // to={`/${name}/${id}/4`}
-                // active={field === "4"}
-                // eventKey="4"
+              <Nav.Item
+                as={Link}
+                to={`/4`}
+                active={field === "4"}
+                eventKey="4"
                 icon={<FolderFillIcon />}
               >
-                Document Portal
-              </Nav.Item> */}
+                Current Job
+              </Nav.Item>
               <Nav.Item
                 // as={Link}
                 // to={`/${name}/${id}/5`}

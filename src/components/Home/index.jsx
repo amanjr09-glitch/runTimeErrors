@@ -4,6 +4,7 @@ import Sidebar from "./Sidebar"
 import Home from "../Job/index"
 import OrderHistory from '../User/Order/History';
 import Profile from '../User/ProfilePage';
+import CurrentJob from '../Job/CurrentJob/CurrentJob';
 
 function index() {
     const { field } = useParams();
@@ -14,6 +15,7 @@ function index() {
                 {field === "1" && <Home />}
                 {field === "3" && <OrderHistory/>}
                 {field === "2" && <Profile/>}
+                {field === "4" && <CurrentJob/>}
 
             </div>
         </div>
