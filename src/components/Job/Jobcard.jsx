@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Modal from '../../UI/Modal'
-import { readData } from '../../api/fb';
+import { readData, writeData } from '../../api/fb';
 
 function Jobcard() {
   const [modal, setModal] = useState(false);
@@ -19,7 +19,20 @@ function Jobcard() {
 
     fetchData();
   }, [])
-
+  // const handleAccept = async () => {
+  //   try {
+  //     const updatedJobData = { ...jobsData[selectedJobId], isAccepted: true };
+  //     await writeData('jobs', selectedJobId, updatedJobData);
+  //     console.log('Job accepted for jobId:', selectedJobId);
+  //     // Update the local jobsData to reflect the change
+  //     setJobsData((prevJobsData) => ({
+  //       ...prevJobsData,
+  //       [selectedJobId]: { ...prevJobsData[selectedJobId], isAccepted: true },
+  //     }));
+  //   } catch (error) {
+  //     console.error('Error accepting the job:', error);
+  //   }
+  // };
 
   const openModal = (jobId) => {
     setSelectedJobId(jobId);
@@ -43,14 +56,18 @@ function Jobcard() {
               <div className='flex flex-row font-semibold text-gray-400 mt-2'>JOB TITLE : {jobsData[selectedJobId].jobTitle}</div>
               <div className='flex flex-row font-semibold text-gray-400 mt-2'>JOB TYPE : {jobsData[selectedJobId].jobType}</div>
               <div className='flex flex-row font-semibold text-gray-400 mt-2'>ADDRESS: {jobsData[selectedJobId].address}</div>
-              <div className='flex flex-row font-semibold text-gray-400 mt-2'>WEIGHT: {jobsData[selectedJobId].weight || 0} &nbsp; LENGTH:{jobsData[selectedJobId].length || 0} &nbsp; HEIGHT: {jobsData[selectedJobId].hieght || 0}  &nbsp; BREADTH: 5cm</div>
+              <div className='flex flex-row font-semibold text-gray-400 mt-2'>WEIGHT: {jobsData[selectedJobId].weight || 0} &nbsp; LENGTH:{jobsData[selectedJobId].length || 0} &nbsp; HEIGHT: {jobsData[selectedJobId].heght || 0}  &nbsp; BREADTH: {jobsData[selectedJobId].breadth}</div>
               <div className='flex flex-row font-semibold text-gray-400 mt-2 mb-1'>JOB DESCRIPTION</div>
               <div className='text-s'>
                 {jobsData[selectedJobId].jobDescription}
               </div>
               <div className=' flex justify-end items-center'>
-                <div className='text-xl text-red-800 font-bold absolute left-10'>₹{jobsData[selectedJobId].bounty}</div>
-                <button className='bg-theme text-white rounded-none mt-2 p-2 font-semibold uppercase'>Accept </button>
+                <div className='text-xl text-red-800 font-bold absolute left-10'>₹{jobsData[selectedJobId].price}</div>
+                <button
+                  className='bg-green-500 text-white rounded-none mt-2 p-2 font-semibold uppercase'
+                >
+                  Accepted
+                </button>
               </div>
             </>
 
@@ -65,14 +82,16 @@ function Jobcard() {
             <div className="py-1">
               <span className='text-gray-400'>Suraj Kumar</span>
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{jobsData[jobId].jobTitle}</h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{jobsData[jobId].job}</p>
-              <div className='text-xl text-red-800 font-bold mr-12'>₹{jobsData[jobId].jobDescription}</div>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{jobsData[jobId].jobDescription}</p>
+              <div className='text-xl text-red-800 font-bold mr-12'>₹{jobsData[jobId].price}</div>
             </div>
             <div className='flex flex-row gap-2 justify-end align items-center'>
               <button
                 onClick={() => openModal(jobId)}
                 className='bg-theme text-white uppercase p-2 font-semibold rounded-none text-xs'>Details</button>
-              <button className='bg-theme text-white uppercase p-2  font-semibold rounded-none text-xs'>Query</button>
+           <button className='bg-theme text-white uppercase p-2 font-semibold rounded-none text-xs'>
+                  {jobsData[jobId].isAccepted ? 'Call' : 'Query'}
+                </button>
             </div>
           </div>
         ))}

@@ -21,6 +21,7 @@ function index() {
         <div className="dark:text-gray-100 bg-gray-200 dark:bg-gray-500 text-gray-400">
             <Router>
                 <Routes>
+                    <Route path ="/" element={<Login/>}/>
                     <Route
                         path={`${link.home}/:field`}
                         // path={link.home}

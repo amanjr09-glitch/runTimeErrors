@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useReducer } from "react";
 const Context = React.createContext();
 
 const INITIAL_STATE = {
-  auth: true,
+  auth: false,
   user: {},
 };
 
