@@ -24,10 +24,11 @@ function Navbar() {
     isDelivery: false,
     email: '',
     phoneNumber: '',
-    weight: '',
+    weight: '', 
     length: '',
     breadth: '',
     height: '',
+    price:''
   });
 
   const handleFileChange = (file) => {
@@ -62,7 +63,7 @@ function Navbar() {
       length,
       breadth,
       height,
-      bounty,
+      price,
     } = formData;
 
     const jobData = {
@@ -77,7 +78,7 @@ function Navbar() {
       length,
       breadth,
       height,
-      bounty,
+      price,
       fileData: fileData || null,
     };
     const jobsid = uuidv4();
@@ -173,11 +174,11 @@ function Navbar() {
               />
             </div>
             <div className="mb-4">
-              <TextArea
+              <InputHolder
                 type="text"
-                title={"Job Title"}
-                value={formData.jobDescription}
-                onChange={handleChange}
+                title={"Job Description"}
+                defaultValue={formData.jobDescription}
+                onChange={(e)=>handleChange('jobDescription', e.target.value)}
                 placeholder="Enter job title"
                 required
               />
@@ -206,16 +207,17 @@ function Navbar() {
                 type={"file"}
                 title={"Upload Picture"}
                 defaultValue=""
-                onChange={(e) => handleFileChange(e.target.value)}
+                onChange={(e) => handleFileChange(e.target.files[0])}
                 required
               />
             </div>
             <div className="mb-4">
-              <InputHolder
-                type={"number"}
-                title="Price"
-                defaultValue=""
-                onChange={(e) => handleFileChange('jobDescription', e.target.value)}
+            <InputHolder
+                type="text"
+                title={"Price"}
+                defaultValue={formData.price}
+                onChange={(e) => handleChange('price', e.target.value)}
+                placeholder="Enter Price"
                 required
               />
             </div>

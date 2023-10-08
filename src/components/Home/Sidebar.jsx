@@ -83,41 +83,42 @@ export default () => {
               >
                 Home
               </Nav.Item>
+              
               <Nav.Item
                 as={Link}
                 to={`/2`}
                 active={field === "2"}
                 eventKey="2"
-                icon={<CharacterAuthorizeIcon />}
-              >
-                Profile
-              </Nav.Item>
-              <Nav.Item
-                as={Link}
-                to={`/3`}
-                active={field === "3"}
-                eventKey="3"
                 icon={<RemindFillIcon />}
               >
                 Orders
               </Nav.Item>
               <Nav.Item
                 as={Link}
-                to={`/4`}
-                active={field === "4"}
-                eventKey="4"
+                to={`/3`}
+                active={field === "3"}
+                eventKey="3"
                 icon={<FolderFillIcon />}
               >
                 Current Job
               </Nav.Item>
               <Nav.Item
-                // as={Link}
-                // to={`/${name}/${id}/5`}
-                // active={field === "5"}
-                // eventKey="5"
+                as={Link}
+                to={`/5`}
+                active={field === "5"}
+                eventKey="5"
                 icon={<PageIcon />}
               >
-                About
+                My Address
+              </Nav.Item>
+              <Nav.Item
+                as={Link}
+                to={`/4`}
+                active={field === "4"}
+                eventKey="4"
+                icon={<CharacterAuthorizeIcon />}
+              >
+                Profile
               </Nav.Item>
               <Nav.Item
                 // as={Link}
